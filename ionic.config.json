@@ -1,0 +1,7 @@
+{
+  "name": "roguelikeApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
