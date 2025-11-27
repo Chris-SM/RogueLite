@@ -1,0 +1,49 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Roguelite</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="auth-content" fullscreen>
+  <div class="logo-wrap">
+    <img src="/assets/logo.svg" alt="Logo do jogo" />
+  </div>
+
+  <ion-card class="auth-card">
+    <ion-segment value="login" (ionChange)="onSegmentChange($event.detail.value)">
+      <ion-segment-button value="login">
+        <ion-label>Login</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="register">
+        <ion-label>Registrar</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <ion-item>
+        <ion-label position="stacked">Nome</ion-label>
+        <ion-input formControlName="username" type="text" autocomplete="username"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Senha</ion-label>
+        <ion-input formControlName="password" type="password" autocomplete="current-password"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="segment === 'register'">
+        <ion-label position="stacked">Confirmar Senha</ion-label>
+        <ion-input formControlName="confirmPassword" type="password" autocomplete="new-password"></ion-input>
+      </ion-item>
+
+      <div class="error" *ngIf="error">{{ error }}</div>
+
+      <ion-button expand="block" type="submit" [disabled]="loading">
+        {{ segment === 'login' ? 'Entrar' : 'Registrar' }}
+      </ion-button>
+    </form>
+  </ion-card>
+
+  <div class="footer-note">
+    <small>Versão inicial — Lite Roguelike</small>
+  </div>
+</ion-content>
